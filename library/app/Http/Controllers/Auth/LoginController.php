@@ -36,9 +36,15 @@ class LoginController extends Controller
 
         }
 
+        // Регенерация ID сессии
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+    // Проверка роли пользователя
+        if (Auth::user()->is_admin) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->route('user.dashboard');
 
     }
 
