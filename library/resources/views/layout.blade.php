@@ -63,9 +63,13 @@
                             @endguest
 
                             @auth
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="{{ route('register') }}">Личный кабинет</a>
-                            </li>
+                                <li class="nav-item">
+                                    @if (Auth::user()->is_admin)
+                                        <a class="nav-link click-scroll" href="{{ route('admin.dashboard') }}">Личный кабинет</a>
+                                    @else
+                                        <a class="nav-link click-scroll" href="{{ route('user.dashboard') }}">Личный кабинет</a>
+                                    @endif
+                                </li>
                             @endauth
 
 
