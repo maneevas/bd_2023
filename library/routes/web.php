@@ -26,7 +26,7 @@ Route::get('/login', [LoginController::class, 'create'])->middleware('guest')->n
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
 
-Route::get('/dashboard', [UserController::class, 'showDashboard'])->middleware('auth')->name('user.dashboard');
+Route::get('/dashboard', [UserController::class, 'showDashboard'])->middleware('auth', 'is_user')->name('user.dashboard');
 Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->middleware(['auth', 'is_admin'])->name('admin.dashboard');
 
 //Auth::routes();
