@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title')Панель администратора@endsection
+@section('title')Панель управления@endsection
 
 @section('main_content')
     
@@ -10,7 +10,7 @@
             <div class="row align-items-center">
 
                 <div class="col-lg-8 col-12 mx-auto">
-                    <h2 class="text-white text-center">Личный кабинет</h2>
+                    <h2 class="text-white text-center">Панель управления</h2>
                 </div>
                 
 
