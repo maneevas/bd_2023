@@ -28,7 +28,7 @@
                     <ul>
                         <li><a href ="{{ route('admin.dashboard') }}" class="active"><i class="fa fa-home fa-fw"></i>Мой профиль</a></li>
                         <li><a href ="{{ route('admin.users.index') }}"><i class="fa fa-users fa-fw"></i>Пользователи</a></li>
-                        <li><a href =""><i class="fa fa-database fa-fw"></i>Авторы</a></li>
+                        <li><a href ="{{ route('admin.authors.index') }}"><i class="fa fa-database fa-fw"></i>Авторы</a></li>
                         <li><a href =""><i class="fa fa-book fa-fw"></i>Книги</a></li>
                     </ul>  
                 </nav>

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminAuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,15 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/users/{user}/edit', [AdminUserController::class, 'edit'])->name('admin.users.edit');
     Route::put('/admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+});
+
+    Route::middleware(['auth', 'is_admin'])->group(function () {
+        Route::get('/admin/authors', [AdminAuthorController::class, 'index'])->name('admin.authors.index');
+        Route::get('/admin/authors/create', [AdminAuthorController::class, 'create'])->name('admin.authors.create');
+        Route::post('/admin/authors', [AdminAuthorController::class, 'store'])->name('admin.authors.store');
+        Route::get('/admin/authors/{author}/edit', [AdminAuthorController::class, 'edit'])->name('admin.authors.edit');
+        Route::put('/admin/authors/{author}', [AdminAuthorController::class, 'update'])->name('admin.authors.update');
+        Route::delete('/admin/authors/{author}', [AdminAuthorController::class, 'destroy'])->name('admin.authors.destroy');
     
 
 });

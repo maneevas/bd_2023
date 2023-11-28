@@ -1,0 +1,83 @@
+@extends('layout')
+
+@section('styles')
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/templatemo-style.css') }}" rel="stylesheet">
+    <style>
+        .logout-button {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+    </style>    
+@endsection
+
+@section('title')Личный кабинет@endsection
+@php
+    $users = DB::table('users')->paginate(10);
+@endphp
+@section('main_content')
+    
+<main>
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+    </header>
+    <div class="templatemo-flex-row">
+        <div class="templatemo-sidebar">
+          <header class="templatemo-site-header">
+            <div class="square"></div>
+            <h1>Управление</h1>
+          </header>
+          <nav class="templatemo-left-nav">          
+            <ul>
+              <li><a href ="{{ route('admin.dashboard') }}" class="active"><i class="fa fa-home fa-fw"></i>Мой профиль</a></li>
+              <li><a href ="{{ route('admin.users.index') }}"><i class="fa fa-users fa-fw"></i>Пользователи</a></li>
+              <li><a href =""><i class="fa fa-database fa-fw"></i>Авторы</a></li>
+              <li><a href =""><i class="fa fa-book fa-fw"></i>Книги</a></li>
+            </ul>  
+          </nav>
+        </div>
+        <div class="templatemo-content col-1 light-gray-bg">
+            <div class="templatemo-content-container">
+                <div class="templatemo-content-widget no-padding">
+                    <div class="logout-button">
+                        <a href="{{ route('admin.authors.create') }}" class="templatemo-blue-button">Добавить автора</a>
+                    </div>                    
+                    <div class="panel panel-default table-responsive">
+                        <table class="table table-striped table-bordered templatemo-user-table" style="background-color: white;">
+                            <thead>
+                                <tr>
+                                    <td>id</td>
+                                    <td>Имя</td>
+                                    <td>Фамилия</td>
+                                    <td>Отчество</td>
+                                    <td>bd_date</td>
+                                    <td>Изменение</td>
+                                    <td>Удаление</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($authors as $author)
+                                    <tr>
+                                        <td>{{ $author->id }}</td>
+                                        <td>{{ $author->name }}</td>
+                                        <td>{{ $author->surname }}</td>
+                                        <td>{{ $author->patname }}</td>
+                                        <td>{{ $author->bd_date }}</td>
+                                        <td><a href="{{ route('admin.authors.edit', $author->id) }}" class="templatemo-edit-btn">Изменить</a></td>
+                                        <td><form method="POST" action="{{ route('admin.authors.destroy', $author->id) }}" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Удалить</button>
+                                        </form></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>    
+                        {{ $authors->links() }}
+                    </div>                          
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@endsection
