@@ -9,6 +9,7 @@ class UserController extends Controller
 {
     public function showDashboard()
 {
-    return view('user.dashboard');
+    $user = Auth::user();
+    return view('dashboard', ['user' => $user]);
 }
 }

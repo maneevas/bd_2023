@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,13 @@ Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')-
 Route::get('/dashboard', [UserController::class, 'showDashboard'])->middleware('auth', 'is_user')->name('user.dashboard');
 Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->middleware(['auth', 'is_admin'])->name('admin.dashboard');
 
-//Auth::routes();
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
+    Route::get('/admin/users/{user}/edit', [AdminUserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+    
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});

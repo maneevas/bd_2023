@@ -10,15 +10,18 @@
     <!-- CSS FILES -->        
     <link rel="preconnect" href="https://fonts.googleapis.com">
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-                        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-        
-        <link rel="stylesheet" href="{{asset('css/templatemo-topic-listing.css') }}">
-        <link rel="stylesheet" type="text/css" href="/resouces/css/templatemo-topic-listing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+                    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" href="{{ asset('css/templatemo-topic-listing.css') }}">
+  
+    @yield('styles')
+
+    
 </head>
 
 
@@ -65,7 +68,7 @@
                             @auth
                                 <li class="nav-item">
                                     @if (Auth::user()->is_admin)
-                                        <a class="nav-link click-scroll" href="{{ route('admin.dashboard') }}">Панель управления</a>
+                                        <a class="nav-link click-scroll" href="{{ route('admin.dashboard') }}">Личный кабинет</a>
                                     @else
                                         <a class="nav-link click-scroll" href="{{ route('user.dashboard') }}">Личный кабинет</a>
                                     @endif
