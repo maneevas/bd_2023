@@ -13,7 +13,7 @@
 
 @section('title')Личный кабинет@endsection
 @php
-    $users = DB::table('users')->paginate(10);
+    $users = DB::table('authors')->paginate(10);
 @endphp
 @section('main_content')
     
