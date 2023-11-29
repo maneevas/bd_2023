@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminBookController;
+use App\Http\Controllers\AdminBookAuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,8 +49,6 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
         Route::get('/admin/authors/{author}/edit', [AdminAuthorController::class, 'edit'])->name('admin.authors.edit');
         Route::put('/admin/authors/{author}', [AdminAuthorController::class, 'update'])->name('admin.authors.update');
         Route::delete('/admin/authors/{author}', [AdminAuthorController::class, 'destroy'])->name('admin.authors.destroy');
-    
-
 });
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
@@ -59,6 +58,13 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/books/{book}/edit', [AdminBookController::class, 'edit'])->name('admin.books.edit');
     Route::put('/admin/books/{book}', [AdminBookController::class, 'update'])->name('admin.books.update');
     Route::delete('/admin/books/{book}', [AdminBookController::class, 'destroy'])->name('admin.books.destroy');
+});
 
-
+Route::middleware(['auth', 'is_admin'])->group(function () {
+Route::get('/admin/book_authors', [AdminBookAuthorController::class, 'index'])->name('admin.book_authors.index');
+    Route::get('/admin/book_authors/create', [AdminBookAuthorController::class, 'create'])->name('admin.book_authors.create');
+    Route::post('/admin/book_authors', [AdminBookAuthorController::class, 'store'])->name('admin.book_authors.store');
+    Route::get('/admin/book_authors/{bookAuthor}/edit', [AdminBookAuthorController::class, 'edit'])->name('admin.book_authors.edit');
+    Route::put('/admin/book_authors/{bookAuthor}', [AdminBookAuthorController::class, 'update'])->name('admin.book_authors.update');
+    Route::delete('/admin/book_authors/{bookAuthor}', [AdminBookAuthorController::class, 'destroy'])->name('admin.book_authors.destroy');
 });

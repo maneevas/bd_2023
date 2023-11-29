@@ -13,7 +13,7 @@
 
 @section('title')Личный кабинет@endsection
 @php
-    $users = DB::table('books')->paginate(10);
+    $users = DB::table('book_authors')->paginate(10);
 @endphp
 @section('main_content')
     
@@ -41,38 +41,38 @@
             <div class="templatemo-content-container">
                 <div class="templatemo-content-widget no-padding">
                     <div class="logout-button">
-                        <a href="{{ route('admin.books.create') }}" class="templatemo-blue-button">Добавить книгу</a>
+                        <a href="{{ route('admin.book_authors.create') }}" class="templatemo-blue-button">Добавить связь книга–автор</a>
                     </div>                    
                     <div class="panel panel-default table-responsive">
                         <table class="table table-striped table-bordered templatemo-user-table" style="background-color: white;">
                             <thead>
                                 <tr>
-                                    <td>id</td>
-                                    <td>Название</td>
-                                    <td>Год выпуска</td>
-                                    <td>Жанр</td>
+                                    <td>ID</td>
+                                    <td>Название книги</td>
+                                    <td>Имя автора</td>
                                     <td>Изменение</td>
                                     <td>Удаление</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($books as $book)
+                                @foreach ($bookAuthors as $bookAuthor)
                                     <tr>
-                                        <td>{{ $book->id }}</td>
-                                        <td>{{ $book->title }}</td>
-                                        <td>{{ $book->creation_year }}</td>
-                                        <td>{{ $book->genre }}</td>
-                                        <td><a href="{{ route('admin.books.edit', $book->id) }}" class="templatemo-edit-btn">Изменить</a></td>
-                                        <td><form method="POST" action="{{ route('admin.books.destroy', $book->id) }}" style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit">Удалить</button>
-                                        </form></td>
+                                        <td>{{ $bookAuthor->id }}</td>
+                                        <td>{{ $bookAuthor->book->title }}</td>
+                                        <td>{{ $bookAuthor->author->name }}</td>
+                                        <td><a href="{{ route('admin.book_authors.edit', $bookAuthor->id) }}" class="templatemo-edit-btn">Изменить</a></td>
+                                        <td>
+                                            <form method="POST" action="{{ route('admin.book_authors.destroy', $bookAuthor->id) }}" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">Удалить</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
-                        </table>    
-                        {{ $books->links() }}
+                        </table>                        
+                        {{ $bookAuthors->links() }}
                     </div>                          
                 </div>
             </div>
