@@ -33,7 +33,7 @@
               <li><a href ="{{ route('admin.authors.index') }}"><i class="fa fa-database fa-fw"></i>Авторы</a></li>
               <li><a href ="{{ route('admin.books.index') }}"><i class="fa fa-book fa-fw"></i>Книги</a></li>
               <li><a href ="{{ route('admin.book_authors.index') }}"><i class="fa fa-book fa-fw"></i>Книги и авторы</a></li>
-              <li><a href =""><i class="fa fa-book fa-fw"></i>Пользователи и книги</a></li>
+              <li><a href ="{{ route('admin.book_issues.index') }}"><i class="fa fa-book fa-fw"></i>Пользователи и книги</a></li>
             </ul>  
           </nav>
         </div>

@@ -15,4 +15,9 @@ class Author extends Model
         'patname',
         'bd_date',
     ]; 
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'book_authors');
+    }
 }

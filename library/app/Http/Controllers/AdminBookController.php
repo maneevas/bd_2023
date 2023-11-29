@@ -10,12 +10,13 @@ class AdminBookController extends Controller
     
     public function index()
     {
-        $books = Book::paginate(10);
+        $books = Book::with('authors')->paginate(10);
         return view('admin.books.index', compact('books'));
     }
 
     public function edit(Book $book)
     {
+        $book->load('authors');
         return view('admin.books.edit', compact('book'));
     }
 

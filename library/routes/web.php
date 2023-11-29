@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminBookController;
 use App\Http\Controllers\AdminBookAuthorController;
+use App\Http\Controllers\AdminBookIssueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,12 @@ Route::get('/admin/book_authors', [AdminBookAuthorController::class, 'index'])->
     Route::put('/admin/book_authors/{bookAuthor}', [AdminBookAuthorController::class, 'update'])->name('admin.book_authors.update');
     Route::delete('/admin/book_authors/{bookAuthor}', [AdminBookAuthorController::class, 'destroy'])->name('admin.book_authors.destroy');
 });
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/book_issues', [AdminBookIssueController::class, 'index'])->name('admin.book_issues.index');
+        Route::get('/admin/book_issues/create', [AdminBookIssueController::class, 'create'])->name('admin.book_issues.create');
+        Route::post('/admin/book_issues', [AdminBookIssueController::class, 'store'])->name('admin.book_issues.store');
+        Route::get('/admin/book_issues/{bookIssue}/edit', [AdminBookIssueController::class, 'edit'])->name('admin.book_issues.edit');
+        Route::put('/admin/book_issues/{bookIssue}', [AdminBookIssueController::class, 'update'])->name('admin.book_issues.update');
+        Route::delete('/admin/book_issues/{bookIssue}', [AdminBookIssueController::class, 'destroy'])->name('admin.book_issues.destroy');
+    });

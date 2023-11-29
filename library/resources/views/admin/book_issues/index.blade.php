@@ -13,7 +13,7 @@
 
 @section('title')Личный кабинет@endsection
 @php
-    $users = DB::table('books')->paginate(10);
+    $users = DB::table('book_issues')->paginate(10);
 @endphp
 @section('main_content')
     
@@ -41,38 +41,52 @@
             <div class="templatemo-content-container">
                 <div class="templatemo-content-widget no-padding">
                     <div class="logout-button">
-                        <a href="{{ route('admin.books.create') }}" class="templatemo-blue-button">Добавить книгу</a>
+                        <a href="{{ route('admin.book_issues.create') }}" class="templatemo-blue-button">Добавить связь пользователь-книга</a>
                     </div>                    
                     <div class="panel panel-default table-responsive">
                         <table class="table table-striped table-bordered templatemo-user-table" style="background-color: white;">
                             <thead>
                                 <tr>
                                     <td>id</td>
-                                    <td>Название</td>
-                                    <td>Год выпуска</td>
-                                    <td>Жанр</td>
+                                    <td>Имя пользователя</td>
+                                    <td>Название книги</td>
+                                    <td>Авторы книги</td>
+                                    <td>Дата взятия</td>
+                                    <td>Дата возврата</td>
                                     <td>Изменение</td>
                                     <td>Удаление</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($books as $book)
-                                    <tr>
-                                        <td>{{ $book->id }}</td>
-                                        <td>{{ $book->title }}</td>
-                                        <td>{{ $book->creation_year }}</td>
-                                        <td>{{ $book->genre }}</td>
-                                        <td><a href="{{ route('admin.books.edit', $book->id) }}" class="templatemo-edit-btn">Изменить</a></td>
-                                        <td><form method="POST" action="{{ route('admin.books.destroy', $book->id) }}" style="display: inline;">
+                                @foreach ($bookIssues as $issue)
+                                <tr>
+                                    <td>{{ $issue->id }}</td>
+                                    <td>{{ $issue->user->name }} {{ $issue->user->surname }} {{ $issue->user->patname }}</td>
+                                    <td>{{ $issue->book->title }}</td>
+                                    <td>
+                                        @foreach ($issue->book->authors as $author)
+                                            {{ $author->name }} {{ $author->surname }} {{ $author->patname }}
+                                            @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td>{{ $issue->take_date }}</td>
+                                    <td>{{ $issue->return_date }}</td>
+                                    <td><a href="{{ route('admin.book_issues.edit', $issue->id) }}" class="templatemo-edit-btn">Изменить</a></td>
+                                    <td>
+                                        <form method="POST" action="{{ route('admin.book_issues.destroy', $issue->id) }}" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit">Удалить</button>
-                                        </form></td>
-                                    </tr>
-                                @endforeach
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach                                
                             </tbody>
-                        </table>    
-                        {{ $books->links() }}
+                        </table>
+                                 
+                        {{ $bookIssues->links() }}
                     </div>                          
                 </div>
             </div>
