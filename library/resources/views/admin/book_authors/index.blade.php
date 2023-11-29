@@ -59,7 +59,7 @@
                                     <tr>
                                         <td>{{ $bookAuthor->id }}</td>
                                         <td>{{ $bookAuthor->book->title }}</td>
-                                        <td>{{ $bookAuthor->author->name }}</td>
+                                        <td>{{ $bookAuthor->author->surname }} {{ $bookAuthor->author->name }} {{ $bookAuthor->author->patname }}</td>
                                         <td><a href="{{ route('admin.book_authors.edit', $bookAuthor->id) }}" class="templatemo-edit-btn">Изменить</a></td>
                                         <td>
                                             <form method="POST" action="{{ route('admin.book_authors.destroy', $bookAuthor->id) }}" style="display: inline;">

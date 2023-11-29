@@ -28,9 +28,11 @@
                         <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
                         <select id="author_id" name="author_id" class="form-control">
                             @foreach ($authors as $author)
-                                <option value="{{ $author->id }}" {{ $author->id == $bookAuthor->author_id ? 'selected' : '' }}>{{ $author->name }}</option>
+                                <option value="{{ $author->id }}" {{ $author->id == $bookAuthor->author_id ? 'selected' : '' }}>
+                                    {{ $author->surname }} {{ $author->name }} {{ $author->patname }}
+                                </option>
                             @endforeach
-                        </select>
+                        </select>                        
                     </div>
                 </div>
                 <div class="form-group">
