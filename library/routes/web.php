@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminAuthorController;
+use App\Http\Controllers\AdminBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +49,16 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
         Route::put('/admin/authors/{author}', [AdminAuthorController::class, 'update'])->name('admin.authors.update');
         Route::delete('/admin/authors/{author}', [AdminAuthorController::class, 'destroy'])->name('admin.authors.destroy');
     
+
+});
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/books', [AdminBookController::class, 'index'])->name('admin.books.index');
+    Route::get('/admin/books/create', [AdminBookController::class, 'create'])->name('admin.books.create');
+    Route::post('/admin/books', [AdminBookController::class, 'store'])->name('admin.books.store');
+    Route::get('/admin/books/{book}/edit', [AdminBookController::class, 'edit'])->name('admin.books.edit');
+    Route::put('/admin/books/{book}', [AdminBookController::class, 'update'])->name('admin.books.update');
+    Route::delete('/admin/books/{book}', [AdminBookController::class, 'destroy'])->name('admin.books.destroy');
+
 
 });

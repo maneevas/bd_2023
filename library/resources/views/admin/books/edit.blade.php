@@ -10,33 +10,27 @@
     <body class="light-gray-bg">
         <div class="templatemo-content-widget templatemo-login-widget white-bg">
             <header class="text-center">
-                <h1>Редактирование автора</h1>
+                <h1>Редактирование книги</h1>
             </header>
-            <form method="POST" action="{{ route('admin.authors.update', $author) }}" class="templatemo-login-form">
+            <form method="POST" action="{{ route('admin.books.update', $book) }}" class="templatemo-login-form">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>                    
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Имя" value="{{ $author->name }}">
-                    </div>  
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>                    
-                        <input type="text" id="surname" name="surname" class="form-control" placeholder="Фамилия" value="{{ $author->surname }}">
-                    </div>  
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>                    
-                        <input type="text" id="patname" name="patname" class="form-control" placeholder="Отчество" value="{{ $author->patname }}">
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Название" value="{{ $book->title }}">
                     </div>  
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></div>                    
-                        <input type="date" id="bd_date" name="bd_date" class="form-control" placeholder="Дата рождения" value="{{ $author->bd_date }}">
+                        <input type="number" id="creation_year" name="creation_year" class="form-control" placeholder="Год выпуска" value="{{ $book->creation_year }}">
+                    </div>  
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>                    
+                        <input type="text" id="genre" name="genre" class="form-control" placeholder="Жанр" value="{{ $book->genre }}">
                     </div>  
                 </div>
                 <div class="form-group">

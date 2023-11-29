@@ -1,4 +1,4 @@
-<h2>Вы действительно хотите удалить пользователя {{ $author->name }}?</h2>
+<h2>Вы действительно хотите удалить автора {{ $author->name }}?</h2>
 <form method="POST" action="{{ route('admin.authors.destroy', $author) }}">
     @csrf
     @method('DELETE')
