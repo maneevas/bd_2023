@@ -23,6 +23,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-8 mx-auto">
+                            @if (session('status'))
+                            <h3 class="site-footer-title mb-3 text-center" style="font-size: 17px;">{{ session('status') }}</h3>
+                            @endif
                             <form action="{{ route('login') }}" method="post" autocomplete="off" class="custom-form contact-form" role="form">
                                
                                 @csrf
@@ -52,7 +55,7 @@
                                                 <input type="checkbox" id="remember" name="remember" />
                                                 <label for="remember">Запомнить меня</label>
                                             </div>
-                                            <a href="/forgotpassword">Забыли пароль?</a>
+                                            <a href="{{ route ('password.request') }}">Забыли пароль?</a>
                                         </div>
                                         <div class="col-lg-12 col-12">
                                             <button type="submit" class="nav-link click-scroll form-control text-center">Войти</button>

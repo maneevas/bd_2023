@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminBookController;
@@ -30,6 +32,12 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 Route::get('/login', [LoginController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
+
+Route::get('/forgotpassword', [ForgotPasswordController::class, 'create'])->middleware('guest')->name('password.request');
+Route::post('/forgotpassword', [ForgotPasswordController::class, 'store'])->middleware('guest')->name('password.email');
+
+Route::get('/resetpassword', [ResetPasswordController::class, 'create'])->middleware('guest')->name('password.reset');
+Route::post('/resetpassword', [ResetPasswordController::class, 'store'])->middleware('guest')->name('password.update');
 
 Route::get('/user/dashboard', [UserController::class, 'showDashboard'])->middleware('auth', 'is_user')->name('user.dashboard');
 Route::get('/user/{user}/books', [UserController::class, 'showBooks'])->middleware('auth', 'is_user')->name('user.books');
