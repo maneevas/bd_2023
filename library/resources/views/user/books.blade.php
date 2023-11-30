@@ -21,7 +21,7 @@
         <div class="templatemo-sidebar">
           <header class="templatemo-site-header">
             <div class="square"></div>
-            <h1>Управление</h1>
+            <h1>Меню</h1>
           </header>
           <nav class="templatemo-left-nav">          
             <ul>
