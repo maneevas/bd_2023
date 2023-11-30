@@ -40,7 +40,8 @@
         <div class="templatemo-content col-1 light-gray-bg">
             <div class="templatemo-content-container">
                 <div class="templatemo-content-widget no-padding">
-                    <div class="logout-button">
+                    <div class="logout-button d-flex align-items-center justify-content-between">
+                        <h2 class="media-heading text-uppercase blue-text">Авторы</h2>
                         <a href="{{ route('admin.authors.create') }}" class="templatemo-blue-button">Добавить автора</a>
                     </div>                    
                     <div class="panel panel-default table-responsive">

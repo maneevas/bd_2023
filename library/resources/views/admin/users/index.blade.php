@@ -40,13 +40,15 @@
         <div class="templatemo-content col-1 light-gray-bg">
             <div class="templatemo-content-container">
                 <div class="templatemo-content-widget no-padding">
-                    <div class="logout-button">
+                    <div class="logout-button d-flex align-items-center justify-content-between">
+                        <h2 class="media-heading text-uppercase blue-text">Пользователи</h2>
                         <a href="{{ route('admin.users.create') }}" class="templatemo-blue-button">Создать нового пользователя</a>
-                    </div>                    
+                    </div>                                    
                     <div class="panel panel-default table-responsive">
                         <table class="table table-striped table-bordered templatemo-user-table" style="background-color: white;">
                             <thead>
                                 <tr>
+        
                                     <td>id</td>
                                     <td>Имя</td>
                                     <td>Фамилия</td>
@@ -82,6 +84,7 @@
             </div>
         </div>
     </div>
+
 </main>
 
 @endsection

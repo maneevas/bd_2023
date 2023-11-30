@@ -41,7 +41,7 @@
                         <i class="fa fa-times"></i>
                         <div class="media margin-bottom-30">
                             <div class="media-body">
-                                <h2 class="media-heading text-uppercase blue-text">{{ $user->patname }} {{ $user->name }} {{ $user->patname }}</h2>
+                                <h2 class="media-heading text-uppercase blue-text">Администратор {{ $user->patname }} {{ $user->name }} {{ $user->patname }}</h2>
                             </div>        
                         </div>
                         <div class="table-responsive">

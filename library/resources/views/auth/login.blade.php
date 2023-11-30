@@ -47,11 +47,13 @@
                                         @enderror
                                     </div>
                                     <div class="flex items-center justify-between">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
                                             <div>
                                                 <input type="checkbox" id="remember" name="remember" />
                                                 <label for="remember">Запомнить меня</label>
                                             </div>
-                                        <a href="/forgotpassword">Забыли пароль?</a>
+                                            <a href="/forgotpassword">Забыли пароль?</a>
+                                        </div>
                                         <div class="col-lg-12 col-12">
                                             <button type="submit" class="nav-link click-scroll form-control text-center">Войти</button>
                                         </div>
