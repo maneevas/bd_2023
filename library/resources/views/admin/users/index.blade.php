@@ -13,8 +13,9 @@
 
 @section('title')Личный кабинет@endsection
 @php
-    $users = DB::table('users')->paginate(10);
+    $users = App\Models\User::orderBy('surname')->paginate(10);
 @endphp
+
 @section('main_content')
     
 <main>
@@ -50,8 +51,8 @@
                                 <tr>
         
                                     <td>id</td>
-                                    <td>Имя</td>
                                     <td>Фамилия</td>
+                                    <td>Имя</td>
                                     <td>Отчество</td>
                                     <td>Email</td>
                                     <td>Статус</td>
@@ -63,8 +64,8 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
                                         <td>{{ $user->surname }}</td>
+                                        <td>{{ $user->name }}</td>
                                         <td>{{ $user->patname }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->is_admin }}</td>

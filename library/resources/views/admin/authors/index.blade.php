@@ -49,8 +49,8 @@
                             <thead>
                                 <tr>
                                     <td>id</td>
-                                    <td>Имя</td>
                                     <td>Фамилия</td>
+                                    <td>Имя</td>
                                     <td>Отчество</td>
                                     <td>Дата рождения</td>
                                     <td>Изменение</td>
@@ -61,8 +61,8 @@
                                 @foreach ($authors as $author)
                                     <tr>
                                         <td>{{ $author->id }}</td>
-                                        <td>{{ $author->name }}</td>
                                         <td>{{ $author->surname }}</td>
+                                        <td>{{ $author->name }}</td>
                                         <td>{{ $author->patname }}</td>
                                         <td>{{ $author->bd_date }}</td>
                                         <td><a href="{{ route('admin.authors.edit', $author->id) }}" class="templatemo-edit-btn">Изменить</a></td>

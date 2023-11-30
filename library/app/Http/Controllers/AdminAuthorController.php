@@ -10,9 +10,10 @@ class AdminAuthorController extends Controller
     
     public function index()
     {
-        $authors = Author::paginate(10);
+        $authors = Author::orderBy('surname')->paginate(10);
         return view('admin.authors.index', compact('authors'));
     }
+    
 
     public function edit(Author $author)
     {

@@ -11,9 +11,14 @@ class AdminBookAuthorController extends Controller
 {
     public function index()
     {
-        $bookAuthors = BookAuthor::with(['book', 'author'])->paginate(10);
+        $bookAuthors = BookAuthor::with('book', 'author')
+            ->join('books', 'book_authors.book_id', '=', 'books.id')
+            ->orderBy('books.title')
+            ->select('book_authors.*') // чтобы избежать перезаписи полей book_authors
+            ->paginate(10);
         return view('admin.book_authors.index', compact('bookAuthors'));
     }
+    
 
     public function create()
     {

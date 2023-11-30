@@ -22,7 +22,7 @@
                         <select id="user_id" name="user_id" class="form-control">
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">
-                                    {{ $user->name }} {{ $user->surname }} {{ $user->patname }}
+                                    {{ $user->surname }} {{ $user->name }} {{ $user->patname }}
                                 </option>
                             @endforeach
                         </select>
@@ -34,12 +34,20 @@
                         <select id="book_id" name="book_id" class="form-control">
                             @foreach ($books as $book)
                                 <option value="{{ $book->id }}">
-                                    {{ $book->title }} ({{ $book->authors->pluck('name')->implode(', ') }})
+                                    {{ $book->title }} (
+                                        @foreach ($book->authors as $author)
+                                            {{ $author->name }} {{ $author->surname }} {{ $author->patname }}
+                                            @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    )
                                 </option>
                             @endforeach
                         </select>                        
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></div>

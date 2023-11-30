@@ -11,9 +11,15 @@ class AdminBookIssueController extends Controller
 {
     public function index()
     {
-        $bookIssues = BookIssue::with(['user', 'book.authors'])->paginate(10);
+        $bookIssues = BookIssue::with(['user', 'book.authors'])
+            ->join('users', 'book_issues.user_id', '=', 'users.id')
+            ->orderBy('users.surname')
+            ->select('book_issues.*') // чтобы избежать перезаписи полей book_issues
+            ->paginate(10);
         return view('admin.book_issues.index', compact('bookIssues'));
     }
+    
+    
     
 
     public function create()
