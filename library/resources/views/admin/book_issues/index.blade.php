@@ -1,3 +1,6 @@
+@php
+    $users = \App\Models\User::where('is_admin', 0)->get();
+@endphp
 @extends('layout')
 
 @section('styles')

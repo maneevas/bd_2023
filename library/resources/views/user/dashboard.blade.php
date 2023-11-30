@@ -27,7 +27,7 @@
                 <nav class="templatemo-left-nav">          
                     <ul>
                         <li><a href ="{{ route('user.dashboard') }}" class="active"><i class="fa fa-home fa-fw"></i>Мой профиль</a></li>
-                        <li><a href =""><i class="fa fa-users fa-fw"></i>Мои книги</a></li>
+                        <li><a href ="{{ route('user.books', ['user' => Auth::user()->id]) }}"><i class="fa fa-users fa-fw"></i>Мои книги</a></li>
                     </ul>  
                 </nav>
             </div>

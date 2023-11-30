@@ -31,7 +31,9 @@ Route::get('/login', [LoginController::class, 'create'])->middleware('guest')->n
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
 
-Route::get('/dashboard', [UserController::class, 'showDashboard'])->middleware('auth', 'is_user')->name('user.dashboard');
+Route::get('/user/dashboard', [UserController::class, 'showDashboard'])->middleware('auth', 'is_user')->name('user.dashboard');
+Route::get('/user/{user}/books', [UserController::class, 'showBooks'])->middleware('auth', 'is_user')->name('user.books');
+
 Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->middleware(['auth', 'is_admin'])->name('admin.dashboard');
 
 Route::middleware(['auth', 'is_admin'])->group(function () {

@@ -1,3 +1,7 @@
+@php
+    $users = \App\Models\User::where('is_admin', 0)->get();
+@endphp
+
 <head>
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/templatemo-style.css') }}" rel="stylesheet">
