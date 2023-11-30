@@ -55,7 +55,7 @@
                                     <td>Имя пользователя</td>
                                     <td>Название книги</td>
                                     <td>Авторы книги</td>
-                                    <td>Дата взятия</td>
+                                    <td>Дата получения</td>
                                     <td>Дата возврата</td>
                                     <td>Изменение</td>
                                     <td>Удаление</td>
@@ -65,7 +65,7 @@
                                 @foreach ($bookIssues as $issue)
                                 <tr>
                                     <td>{{ $issue->id }}</td>
-                                    <td>{{ $issue->user->name }} {{ $issue->user->surname }} {{ $issue->user->patname }}</td>
+                                    <td>{{ $issue->user->surname }} {{ $issue->user->name }} {{ $issue->user->patname }}</td>
                                     <td>{{ $issue->book->title }}</td>
                                     <td>
                                         @foreach ($issue->book->authors as $author)
