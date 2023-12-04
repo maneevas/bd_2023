@@ -10,7 +10,7 @@
     <body class="light-gray-bg">
         <div class="templatemo-content-widget templatemo-login-widget white-bg">
             <header class="text-center">
-                <h1>Редактирование книги</h1>
+                <h1>Изменение данных о книге</h1>
             </header>
             <form method="POST" action="{{ route('admin.books.update', $book) }}" class="templatemo-login-form">
                 @csrf

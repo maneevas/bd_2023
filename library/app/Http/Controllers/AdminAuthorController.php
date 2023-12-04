@@ -8,10 +8,19 @@ use App\Models\Author;
 class AdminAuthorController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $authors = Author::orderBy('surname')->paginate(10);
-        return view('admin.authors.index', compact('authors'));
+        $search = $request->get('search');
+        $authors = Author::query();
+
+        if ($search) {
+            $authors->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('surname', 'LIKE', "%{$search}%");
+        }
+
+        $authors = $authors->orderBy('surname', 'asc')->paginate(10);
+
+        return view('admin.authors.index', compact('authors', 'search'));
     }
     
 

@@ -27,9 +27,7 @@
                             <h3 class="site-footer-title mb-3 text-center" style="font-size: 17px;">{{ session('status') }}</h3>
                             @endif
                             <form action="{{ route('login') }}" method="post" autocomplete="off" class="custom-form contact-form" role="form">
-                               
                                 @csrf
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-12"> 
                                         <div class="form-floating">

@@ -9,14 +9,26 @@ use Illuminate\Http\Request;
 
 class AdminBookAuthorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->get('search');
         $bookAuthors = BookAuthor::with('book', 'author')
-            ->join('books', 'book_authors.book_id', '=', 'books.id')
-            ->orderBy('books.title')
-            ->select('book_authors.*') // чтобы избежать перезаписи полей book_authors
-            ->paginate(10);
-        return view('admin.book_authors.index', compact('bookAuthors'));
+        ->join('books', 'book_authors.book_id', '=', 'books.id')
+        ->join('authors', 'book_authors.author_id', '=', 'authors.id')
+        ->select('book_authors.*', 'books.title', 'authors.name', 'authors.surname');
+    
+
+    
+        if ($search) {
+            $bookAuthors->where(function ($query) use ($search) {
+                $query->where('books.title', 'LIKE', "%{$search}%")
+                    ->orWhere('authors.name', 'LIKE', "%{$search}%")
+                    ->orWhere('authors.surname', 'LIKE', "%{$search}%");
+            });
+        }
+    
+        $bookAuthors = $bookAuthors->orderBy('books.title', 'asc')->orderBy('book_authors.id', 'asc')->paginate(10);
+        return view('admin.book_authors.index', compact('bookAuthors', 'search'));
     }
     
 

@@ -12,7 +12,7 @@
     <body class="light-gray-bg">
         <div class="templatemo-content-widget templatemo-login-widget white-bg">
             <header class="text-center">
-                <h1>Новая связь пользователь-книга</h1>
+                <h1>Выдача книги</h1>
             </header>
             <form method="POST" action="{{ route('admin.book_issues.store') }}" class="templatemo-login-form">
                 @csrf

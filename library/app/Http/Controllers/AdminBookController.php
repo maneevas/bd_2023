@@ -7,11 +7,18 @@ use App\Models\Book;
 
 class AdminBookController extends Controller
 {
-    
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::orderBy('title')->paginate(10);
-        return view('admin.books.index', compact('books'));
+        $search = $request->get('search');
+        $books = Book::query();
+
+        if ($search) {
+            $books->where('title', 'LIKE', "%{$search}%");
+        }
+
+        $books = $books->orderBy('title', 'asc')->paginate(10);
+
+        return view('admin.books.index', compact('books', 'search'));
     }
     
 
