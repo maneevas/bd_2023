@@ -10,7 +10,6 @@
     <body class="light-gray-bg">
         <div class="templatemo-content-widget templatemo-login-widget white-bg">
             <header class="text-center">
-                <div class="square"></div>
                 <h1>Новый пользователь</h1>
             </header>
             <form method="POST" action="{{ route('admin.users.store') }}" class="templatemo-login-form">

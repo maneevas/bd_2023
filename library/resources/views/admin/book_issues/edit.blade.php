@@ -1,3 +1,6 @@
+@php
+    $users = \App\Models\User::where('is_admin', 0)->get();
+@endphp
 <head>
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/templatemo-style.css') }}" rel="stylesheet">
@@ -8,7 +11,7 @@
     <body class="light-gray-bg">
         <div class="templatemo-content-widget templatemo-login-widget white-bg">
             <header class="text-center">
-                <h1>Редактирование связи пользователь-книга</h1>
+                <h1>Изменение связи читатель-книга</h1>
             </header>
             <form method="POST" action="{{ route('admin.book_issues.update', $bookIssue->id) }}" class="templatemo-login-form">
                 @csrf
@@ -19,7 +22,7 @@
                         <select id="user_id" name="user_id" class="form-control">
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}" {{ $user->id == $bookIssue->user_id ? 'selected' : '' }}>
-                                    {{ $user->name }} {{ $user->surname }} {{ $user->patname }}
+                                    {{ $user->surname }} {{ $user->name }} {{ $user->patname }}
                                 </option>
                             @endforeach
                         </select>
@@ -31,12 +34,20 @@
                         <select id="book_id" name="book_id" class="form-control">
                             @foreach ($books as $book)
                                 <option value="{{ $book->id }}" {{ $book->id == $bookIssue->book_id ? 'selected' : '' }}>
-                                    {{ $book->title }} ({{ $book->authors->pluck('name')->implode(', ') }})
+                                    {{ $book->title }} (
+                                        @foreach ($book->authors as $author)
+                                            {{ $author->name }} {{ $author->surname }} {{ $author->patname }}
+                                            @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    )
                                 </option>
                             @endforeach
                         </select>                        
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></div>

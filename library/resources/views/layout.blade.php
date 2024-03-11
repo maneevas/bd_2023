@@ -26,60 +26,60 @@
 
 
     <body id="top">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="/">
-                        <i class="bi-back"></i>
-                        <span>Главная</span>
-                    </a>
+           <nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="bi-back"></i>
+            <span>Главная</span>
+        </a>
 
-                    <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                    </div>
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="/#section_1">Поиск</a>
-                            </li>
+        <div class="d-lg-none ms-auto me-4">
+            <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+        </div>
 
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="/#section_2">Подборки</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="/#section_3">Помощь</a>
-                            </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                            @guest
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="{{ route('login') }}">Вход</a>
-                            </li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="/#section_1"></a>
+                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="{{ route('register') }}">Регистрация</a>
-                            </li>
-                            @endguest
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="/#section_2"></a>
+                </li>
 
-                            @auth
-                                <li class="nav-item">
-                                    @if (Auth::user()->is_admin)
-                                        <a class="nav-link click-scroll" href="{{ route('admin.dashboard') }}">Личный кабинет</a>
-                                    @else
-                                        <a class="nav-link click-scroll" href="{{ route('user.dashboard') }}">Личный кабинет</a>
-                                    @endif
-                                </li>
-                            @endauth
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="/#section_3"></a>
+                </li>
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="{{ route('login') }}">Вход</a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="{{ route('register') }}">Регистрация</a>
+                </li>
+                @endguest
 
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                @auth
+                    <li class="nav-item">
+                        @if (Auth::user()->is_admin)
+                            <a class="nav-link click-scroll" href="{{ route('admin.dashboard') }}">Личный кабинет</a>
+                        @else
+                            <a class="nav-link click-scroll" href="{{ route('user.dashboard') }}">Личный кабинет</a>
+                        @endif
+                    </li>
+                @endauth
+            </ul>
+        </div>
+    </div>
+</nav>
+
 
 @yield('main_content')
 
@@ -103,23 +103,6 @@
                                 улица Кирова, 40, Ульяновск
                             </a>
                         </p>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <h6 class="site-footer-title mb-3">Навигация по сайту</h6>
-
-                        <ul class="site-footer-links">
-                            <li class="site-footer-link-item">
-                                <a href="/#section_1" class="site-footer-link">Поиск</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="/#section_2" class="site-footer-link">Подборки</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="/#section_3" class="site-footer-link">Помощь</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>

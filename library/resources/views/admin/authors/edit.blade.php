@@ -10,7 +10,7 @@
     <body class="light-gray-bg">
         <div class="templatemo-content-widget templatemo-login-widget white-bg">
             <header class="text-center">
-                <h1>Редактирование автора</h1>
+                <h1>Изменение данных об авторе</h1>
             </header>
             <form method="POST" action="{{ route('admin.authors.update', $author) }}" class="templatemo-login-form">
                 @csrf

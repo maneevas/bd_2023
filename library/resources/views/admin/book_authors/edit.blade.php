@@ -8,7 +8,7 @@
     <body class="light-gray-bg">
         <div class="templatemo-content-widget templatemo-login-widget white-bg">
             <header class="text-center">
-                <h1>Редактирование связи книга-автор</h1>
+                <h1>Изменение связи книга-автор</h1>
             </header>
             <form method="POST" action="{{ route('admin.book_authors.update', $bookAuthor->id) }}" class="templatemo-login-form">
                 @csrf

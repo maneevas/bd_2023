@@ -9,12 +9,23 @@ use Illuminate\Support\Facades\Hash;
 class AdminUserController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(10);
-        return view('admin.users.index', compact('users'));
-    }
+        $search = $request->get('search');
+        $users = User::query();
 
+        if ($search) {
+            $users->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('surname', 'LIKE', "%{$search}%");
+        }
+
+        $users = $users->orderBy('surname', 'asc')->paginate(10);
+
+        return view('admin.users.index', compact('users', 'search'));
+    }
+    
+
+    
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));

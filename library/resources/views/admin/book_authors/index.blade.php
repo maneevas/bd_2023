@@ -12,9 +12,6 @@
 @endsection
 
 @section('title')Личный кабинет@endsection
-@php
-    $users = DB::table('book_authors')->paginate(10);
-@endphp
 @section('main_content')
     
 <main>
@@ -33,7 +30,7 @@
               <li><a href ="{{ route('admin.authors.index') }}"><i class="fa fa-database fa-fw"></i>Авторы</a></li>
               <li><a href ="{{ route('admin.books.index') }}"><i class="fa fa-book fa-fw"></i>Книги</a></li>
               <li><a href ="{{ route('admin.book_authors.index') }}"><i class="fa fa-book fa-fw"></i>Книги и авторы</a></li>
-              <li><a href ="{{ route('admin.book_issues.index') }}"><i class="fa fa-book fa-fw"></i>Пользователи и книги</a></li>
+              <li><a href ="{{ route('admin.book_issues.index') }}"><i class="fa fa-book fa-fw"></i>Читатели и книги</a></li>
             </ul>  
           </nav>
         </div>
@@ -43,11 +40,17 @@
                     <div class="logout-button d-flex align-items-center justify-content-between">
                         <h2 class="media-heading text-uppercase blue-text">Книги и авторы</h2>
                         <a href="{{ route('admin.book_authors.create') }}" class="templatemo-blue-button">Добавить связь книга–автор</a>
-                    </div>                    
+                    </div>  
+                    <form action="{{ route('admin.book_authors.index') }}" method="GET">
+                        <input type="text" style="width: 220px;height: 28px;" name="search" placeholder="Найти по названию/имени автора" value="{{ request()->get('search') }}" required/>
+                        <button type="submit" class="btn btn-primary">Найти</button>
+                        <a href="{{ route('admin.book_authors.index') }}" class="btn btn-default">Сбросить</a>
+                    </form>
+                    <p style="font-size: 14px;">Записей найдено: {{ $bookAuthors->total() }}</p>                  
                     <div class="panel panel-default table-responsive">
                         <table class="table table-striped table-bordered templatemo-user-table" style="background-color: white;">
                             <thead>
-                                <tr>
+                                <tr style="text-align: center;">
                                     <td>ID</td>
                                     <td>Название книги</td>
                                     <td>Имя автора</td>
@@ -57,27 +60,29 @@
                             </thead>
                             <tbody>
                                 @foreach ($bookAuthors as $bookAuthor)
-                                    <tr>
+                                    <tr @if(isset($search) && (strpos($bookAuthor->book->title, $search) !== false || strpos($bookAuthor->author->name, $search) !== false || strpos($bookAuthor->author->surname, $search) !== false)) style="text-align: center; background-color: #f1e9db;" @else style="text-align: center;" @endif>
                                         <td>{{ $bookAuthor->id }}</td>
                                         <td>{{ $bookAuthor->book->title }}</td>
                                         <td>{{ $bookAuthor->author->surname }} {{ $bookAuthor->author->name }} {{ $bookAuthor->author->patname }}</td>
-                                        <td><a href="{{ route('admin.book_authors.edit', $bookAuthor->id) }}" class="templatemo-edit-btn">Изменить</a></td>
+                                        <td><a href="{{ route('admin.book_authors.edit', $bookAuthor->id) }}" class="btn btn-default" style="background-color: #71bfc0;color: white">Изменить</a></td>
                                         <td>
                                             <form method="POST" action="{{ route('admin.book_authors.destroy', $bookAuthor->id) }}" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit">Удалить</button>
+                                                <button type="submit" class="btn btn-default" style="background-color: #dd7676;color: white;">Удалить</button>
                                             </form>
                                         </td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>
-                        </table>                        
-                        {{ $bookAuthors->links() }}
+                        </table>    
+                        {{ $bookAuthors->links('vendor.pagination.bootstrap-4') }}
                     </div>                          
                 </div>
             </div>
         </div>
+        
     </div>
 </main>
 

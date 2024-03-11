@@ -9,13 +9,28 @@ use Illuminate\Http\Request;
 
 class AdminBookIssueController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $bookIssues = BookIssue::with(['user', 'book.authors'])->paginate(10);
-        return view('admin.book_issues.index', compact('bookIssues'));
+        $search = $request->get('search');
+        $bookIssues = BookIssue::with('book', 'user')
+        ->join('books', 'book_issues.book_id', '=', 'books.id')
+        ->join('users', 'book_issues.user_id', '=', 'users.id')
+        ->select('book_issues.*', 'books.title', 'users.name', 'users.surname');
+    
+    
+        if ($search) {
+            $bookIssues->where(function ($query) use ($search) {
+                $query->where('books.title', 'LIKE', "%{$search}%")
+                    ->orWhere('users.name', 'LIKE', "%{$search}%")
+                    ->orWhere('users.surname', 'LIKE', "%{$search}%");
+            });
+        }
+    
+        $bookIssues = $bookIssues->orderBy('book_issues.created_at', 'asc')->paginate(10);
+        return view('admin.book_issues.index', compact('bookIssues', 'search'));
     }
     
-
+    
     public function create()
     {
         $users = User::all();
